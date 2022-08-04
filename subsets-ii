@@ -1,0 +1,28 @@
+//https://leetcode.com/problems/subsets-ii/
+class Solution {
+    List<List<Integer>> ans=new ArrayList<>();
+    HashSet<List<Integer>> set=new HashSet();
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        if(nums.length==0)
+            return ans;
+        Arrays.sort(nums);
+        subSequence(0,nums,new ArrayList<Integer>());
+        return ans;
+    }
+    public void subSequence(int index,int[] nums,List<Integer> temp)
+    {
+        if(index>=nums.length)
+        {
+            if(!set.contains(temp))
+            {
+                set.add(new ArrayList(temp));
+                ans.add(new ArrayList(temp));
+            }
+            return;
+        }
+        temp.add(nums[index]);
+        subSequence(index+1,nums,temp);
+        temp.remove(temp.size()-1);
+        subSequence(index+1,nums,temp);
+    }
+}
