@@ -11,7 +11,7 @@ class Solution {
     {
         if(index>=nums.length)
         {
-            list.add(new ArrayList(temp));
+            list.add(new ArrayList(temp));//java stores references of list so we have to add like this otherwise it will be null..
             return;
         }
         temp.add(nums[index]);
