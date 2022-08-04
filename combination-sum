@@ -1,0 +1,29 @@
+//https://leetcode.com/problems/combination-sum/
+class Solution {
+    List<List<Integer>> ans=new ArrayList<>();
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        if(candidates.length==0)
+            return ans;
+        subSequence(0,candidates,target,new ArrayList<Integer>());
+        return ans;
+    }
+    public void subSequence(int index,int[] candidates,int target,List<Integer> temp)
+    {
+        if(target==0)
+        {
+            ans.add(new ArrayList(temp));
+            return ;
+        }
+        else
+            if(target<0 || index>=candidates.length)
+                return;
+        else
+        {
+            temp.add(candidates[index]);
+            subSequence(index,candidates,target-candidates[index],temp);
+            temp.remove(temp.size()-1);
+            subSequence(index+1,candidates,target,temp);
+        }
+        
+    }
+}
